@@ -1,0 +1,27 @@
+.name{
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+.nav-items{
+    margin-left: 45%;
+}
+.item{
+    margin-left: 30px;
+    font-size: 20px;
+    border-bottom: 10px solid transparent;
+    text-decoration: none;
+}
+.item:hover{
+    border-bottom: 5px solid blueviolet;
+    text-shadow: 5px 5px 8px blueviolet;
+    cursor: pointer;
+}
+.hey{
+    background-color:rgba(24, 11, 36, 0.859);
+    position: sticky;
+    top: 0%;
+    z-index: 10;
+    color: white;
+}

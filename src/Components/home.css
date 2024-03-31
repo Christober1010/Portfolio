@@ -1,0 +1,46 @@
+.home{
+    overflow: hidden;
+    position: relative;
+}
+.overlay{
+    position: absolute;
+    top: 0%;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.752);
+}
+.details{
+    position: absolute;
+    top: 25%;
+    align-items: center;
+}
+.home-name{
+    font-size: 50px;
+    color: beige;
+    font-weight: 600;
+    margin-left: 40px;
+}
+.highlight{
+    color: blueviolet;
+    font-weight: 700;
+}
+.position{
+    font-size: 50px;
+    font-weight: 700;
+    color: orange;
+}
+.details2{
+    margin-top: 15%;
+}
+.intro{
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    word-spacing: 4px;
+}
+.intro-text{
+    font-weight: 600;
+    color: white;
+    font-size: 18px;
+    margin-top: 20px;
+}
