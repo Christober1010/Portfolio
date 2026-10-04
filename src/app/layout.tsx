@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Newsreader } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { Motion } from "@/components/motion/Motion";
+import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { Spotlight } from "@/components/Spotlight";
 import { profile } from "@/content/profile";
 import "./globals.css";
@@ -70,18 +72,27 @@ const personJsonLd = {
   knowsAbout: ["React", "Next.js", "TypeScript", "WebSockets", "Web performance"],
 };
 
+const motionScript = `if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("motion")`;
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${newsreader.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
+      <head>
+        {/* Before first paint: opt into motion so animated elements start hidden, not flash. */}
+        <script dangerouslySetInnerHTML={{ __html: motionScript }} />
+      </head>
       <body className="min-h-full font-sans">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
         <Spotlight />
+        <SmoothScroll />
+        <Motion />
         <div className="page">
           <Header />
           {children}

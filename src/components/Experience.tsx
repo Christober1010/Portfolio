@@ -5,7 +5,7 @@ export function Experience() {
   return (
     <section className="section" id="experience" aria-labelledby="experience-title">
       <div className="shell experience-layout">
-        <Reveal>
+        <Reveal className="experience-aside">
           <div className="role-card">
             <p className="kicker">
               <span>02</span>
@@ -23,21 +23,21 @@ export function Experience() {
         </Reveal>
 
         <div>
-          <h2 id="experience-title" className="section-title">
+          <h2 id="experience-title" className="section-title" data-split="">
             End-to-end ownership on a workflow platform.
           </h2>
-          <p className="lede" style={{ marginTop: "1rem" }}>
+          <p className="lede" style={{ marginTop: "1rem" }} data-anim="">
             {profile.company}. Architecture, the canvas, the AI surface, and the release path.
           </p>
           <div className="beats" style={{ marginTop: "1.75rem" }}>
-            {experience.map((item, index) => (
-              <Reveal key={item.lead} className="beat" delay={(index % 3) * 40}>
+            {experience.map((item) => (
+              <div key={item.lead} className="beat" data-anim="" data-rule="">
                 <strong>{item.lead}</strong>
                 <p>{item.text}</p>
-              </Reveal>
+              </div>
             ))}
           </div>
-          <div className="education">
+          <div className="education" data-anim="">
             <p>
               <strong>Bachelor of Science</strong>
               <span> · Pondicherry University</span>

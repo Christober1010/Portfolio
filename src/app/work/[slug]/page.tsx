@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ViewTransition } from "react";
+import { demos } from "@/components/demos";
 import { Reveal } from "@/components/Reveal";
 import { visuals } from "@/components/Visuals";
 import { profile, projects } from "@/content/profile";
@@ -39,23 +41,24 @@ export default async function ProjectPage(props: PageProps<"/work/[slug]">) {
 
   return (
     <main id="content">
+      <div className="read-progress" data-progress="" aria-hidden="true" />
       <article className="section case" aria-labelledby="case-title" style={{ paddingTop: "3rem" }}>
         <div className="shell">
-          <Link className="back-link rise" href="/#work">
+          <Link className="back-link" href="/#work" data-intro="fade">
             ← All work
           </Link>
-          <p className="kicker rise" style={{ animationDelay: "40ms", marginTop: "2.5rem" }}>
+          <p className="kicker" style={{ marginTop: "2.5rem" }} data-intro="fade">
             <span>{project.index}</span>
             Case study
           </p>
-          <h1 id="case-title" className="case-title rise" style={{ animationDelay: "90ms" }}>
+          <h1 id="case-title" className="case-title" data-intro="chars">
             {project.title}
           </h1>
-          <p className="role-line rise" style={{ animationDelay: "140ms" }}>
+          <p className="role-line" data-intro="fade">
             {project.subtitle}
           </p>
 
-          <dl className="case-meta rise" style={{ animationDelay: "200ms" }}>
+          <dl className="case-meta" data-intro="fade">
             <div>
               <dt>Year</dt>
               <dd>{project.year}</dd>
@@ -76,38 +79,77 @@ export default async function ProjectPage(props: PageProps<"/work/[slug]">) {
             </div>
           </dl>
 
-          <div className="case-visual rise" style={{ animationDelay: "260ms" }}>
-            <Visual />
+          <div className="case-visual">
+            <ViewTransition name={`visual-${project.slug}`} share="morph" default="none">
+              <Visual />
+            </ViewTransition>
           </div>
 
           <div className="case-body">
-            <Reveal className="case-row">
-              <h2 className="case-label">Context</h2>
+            <div className="case-row" data-rule="">
+              <h2 className="case-label" data-anim="">
+                Context
+              </h2>
               <div>
-                <p className="lede">{project.context}</p>
-                <p className="lede" style={{ marginTop: "1rem" }}>
+                <p className="lede" data-anim="">
+                  {project.context}
+                </p>
+                <p className="lede" style={{ marginTop: "1rem" }} data-anim="">
                   {project.summary}
                 </p>
               </div>
-            </Reveal>
+            </div>
 
-            <Reveal className="case-row">
-              <h2 className="case-label">What I built</h2>
+            <section className="case-demos" aria-labelledby="demos-title">
+              <div className="case-row" data-rule="">
+                <h2 id="demos-title" className="case-label" data-anim="">
+                  In motion
+                </h2>
+              </div>
+              <div className="demo-grid">
+                {project.demos.map((demo, index) => {
+                  const Demo = demos[demo.id];
+                  return (
+                    <figure key={demo.id} className="demo" data-anim="">
+                      <div className="demo-frame">
+                        <Demo />
+                      </div>
+                      <figcaption>
+                        <p className="demo-index">{String(index + 1).padStart(2, "0")}</p>
+                        <h3>{demo.title}</h3>
+                        <p>{demo.caption}</p>
+                      </figcaption>
+                    </figure>
+                  );
+                })}
+              </div>
+            </section>
+
+            <div className="case-row" data-rule="">
+              <h2 className="case-label" data-anim="">
+                What I built
+              </h2>
               <ul className="case-list">
                 {project.built.map((item) => (
-                  <li key={item}>{item}</li>
+                  <li key={item} data-anim="">
+                    {item}
+                  </li>
                 ))}
               </ul>
-            </Reveal>
+            </div>
 
-            <Reveal className="case-row">
-              <h2 className="case-label">Results</h2>
+            <div className="case-row" data-rule="">
+              <h2 className="case-label" data-anim="">
+                Results
+              </h2>
               <ul className="case-results">
                 {project.results.map((item) => (
-                  <li key={item}>{item}</li>
+                  <li key={item} data-anim="">
+                    {item}
+                  </li>
                 ))}
               </ul>
-            </Reveal>
+            </div>
           </div>
 
           <Reveal>

@@ -7,13 +7,23 @@ import { nav, profile } from "@/content/profile";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const pathname = usePathname();
   const onHome = pathname === "/";
   const [section, setSection] = useState("");
   const active = onHome ? section : pathname.startsWith("/work") ? "work" : "";
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    let last = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 8);
+      // Tuck the bar away while reading down; bring it back on any upward scroll.
+      if (Math.abs(y - last) > 6) {
+        setHidden(y > last && y > 160);
+        last = y;
+      }
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -40,7 +50,7 @@ export function Header() {
   }, [onHome]);
 
   return (
-    <header className="nav" data-scrolled={scrolled}>
+    <header className="nav" data-scrolled={scrolled} data-hidden={hidden}>
       <a className="skip" href="#content">
         Skip to content
       </a>
@@ -59,7 +69,7 @@ export function Header() {
             </Link>
           ))}
         </nav>
-        <a className="btn btn-primary nav-mail" href={`mailto:${profile.email}`}>
+        <a className="btn btn-primary nav-mail" href={`mailto:${profile.email}`} data-magnetic="">
           Email
         </a>
       </div>

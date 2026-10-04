@@ -101,7 +101,7 @@ export function Contact() {
             <span>04</span>
             Contact
           </p>
-          <h2 id="contact-title" className="section-title">
+          <h2 id="contact-title" className="section-title" data-split="">
             Tell me what you’re building.
           </h2>
           <p className="lede" style={{ marginTop: "1rem" }}>
@@ -221,7 +221,12 @@ export function Contact() {
               </p>
             )}
             <div>
-              <button className="btn btn-primary" type="submit" disabled={status === "sending"}>
+              <button
+                className="btn btn-primary"
+                type="submit"
+                disabled={status === "sending"}
+                data-magnetic=""
+              >
                 {status === "sending" ? "Sending" : "Send note"}
               </button>
             </div>

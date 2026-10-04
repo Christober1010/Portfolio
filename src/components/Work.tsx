@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ViewTransition } from "react";
 import { projects, type Project } from "@/content/profile";
 import { Reveal } from "@/components/Reveal";
 import { visuals } from "@/components/Visuals";
@@ -35,7 +36,9 @@ function ProjectCard({ project, className }: { project: Project; className: stri
           Read case study →
         </p>
       </div>
-      <Visual />
+      <ViewTransition name={`visual-${project.slug}`} share="morph" default="none">
+        <Visual />
+      </ViewTransition>
     </article>
   );
 }
@@ -46,21 +49,19 @@ export function Work() {
   return (
     <section className="section" id="work" aria-labelledby="work-title" style={{ paddingTop: 0 }}>
       <div className="shell">
-        <Reveal>
-          <div className="section-head">
-            <p className="kicker">
-              <span>01</span>
-              Selected work
-            </p>
-            <h2 id="work-title" className="section-title">
-              Interfaces operations teams use every day.
-            </h2>
-            <p className="lede">
-              Four products from the last two years. The through-line is the same: a UI that stays
-              legible when the data, the graph, or the page count gets large.
-            </p>
-          </div>
-        </Reveal>
+        <div className="section-head">
+          <p className="kicker" data-anim="">
+            <span>01</span>
+            Selected work
+          </p>
+          <h2 id="work-title" className="section-title" data-split="">
+            Interfaces operations teams use every day.
+          </h2>
+          <p className="lede" data-anim="">
+            Four products from the last two years. The through-line is the same: a UI that stays
+            legible when the data, the graph, or the page count gets large.
+          </p>
+        </div>
 
         <div className="work-list">
           <Reveal>
@@ -71,11 +72,7 @@ export function Work() {
             {rest.map((project, index) => {
               const wide = index === rest.length - 1;
               return (
-                <Reveal
-                  key={project.slug}
-                  className={wide ? "span-all" : undefined}
-                  delay={index * 60}
-                >
+                <Reveal key={project.slug} className={wide ? "span-all" : undefined}>
                   <ProjectCard project={project} className={wide ? "card card-wide" : "card"} />
                 </Reveal>
               );

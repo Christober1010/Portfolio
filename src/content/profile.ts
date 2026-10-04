@@ -49,6 +49,23 @@ export const projects = [
       "About 35% smaller initial bundle.",
       "Used daily by operations teams.",
     ],
+    demos: [
+      {
+        id: "workflow-run",
+        title: "Live execution",
+        caption: "Documents move through the graph and each node lights as the run reaches it.",
+      },
+      {
+        id: "workflow-validate",
+        title: "Checks before it runs",
+        caption: "Rule-based validation catches a type mismatch and blocks the run until it is fixed.",
+      },
+      {
+        id: "workflow-prompt",
+        title: "Plain language to mapping",
+        caption: "Describe the mapping; the assistant streams the configuration back token by token.",
+      },
+    ],
     visual: "workflow",
   },
   {
@@ -72,29 +89,69 @@ export const projects = [
       "A content model on PostgreSQL designed to grow without reworking the routes.",
     ],
     results: ["1.8M+ indexed pages.", "Measurable organic search growth."],
+    demos: [
+      {
+        id: "dictionary-segments",
+        title: "Every segment, explained",
+        caption: "A raw X12 850 read line by line, with each segment defined as it is reached.",
+      },
+      {
+        id: "dictionary-build",
+        title: "Generated at scale",
+        caption: "Static generation fills out the catalog until all 1.8 million pages exist.",
+      },
+      {
+        id: "dictionary-links",
+        title: "Nothing is orphaned",
+        caption: "Internal links let a crawler reach every page in a cluster from any entry point.",
+      },
+    ],
     visual: "dictionary",
   },
   {
     slug: "zenbridge",
     index: "03",
     title: "Zenbridge",
-    subtitle: "B2B marketing site",
+    subtitle: "B2B marketing site with ECHO analytics",
     year: "2024",
     summary:
-      "Sole frontend owner from design handoff to production. The marketing site was built with Next.js SSR, a shared component library, and a metadata setup aimed at search.",
-    outcome: "98/100 Lighthouse performance and 95/100 SEO after image, cache, and script tuning.",
-    stack: ["Next.js", "React", "SASS", "SEO"],
+      "Sole frontend owner from design handoff to production. A statically generated Next.js marketing site on a shared component library, integrated with ECHO, the in-house event tool, so marketing can see what visitors engage with.",
+    outcome:
+      "98/100 Lighthouse performance and 95/100 SEO, and a marketing team that can see which parts of the site hold visitors' interest.",
+    stack: ["Next.js", "React", "SASS", "SEO", "ECHO"],
     role: "Sole frontend owner",
     context:
-      "The public marketing site for Zenbridge, where load speed and search ranking decide whether a buyer ever sees the product.",
+      "The public marketing site for Zenbridge, where load speed and search ranking decide whether a buyer ever sees the product, and where marketing needs to know what those buyers actually look at.",
     built: [
       "Took the site from design handoff to production.",
-      "Next.js server-rendered pages on a shared component library.",
+      "Statically generated Next.js pages on a shared component library.",
+      "Integrated ECHO, the in-house event measuring tool, so user activity and areas of interest are tracked across the site.",
       "A metadata setup aimed at search.",
       "Image, cache, and script tuning to keep pages light.",
     ],
-    results: ["98/100 Lighthouse performance.", "95/100 Lighthouse SEO."],
-    visual: "score",
+    results: [
+      "98/100 Lighthouse performance.",
+      "95/100 Lighthouse SEO.",
+      "Marketing gets insight into visitor activity and areas of interest from ECHO.",
+    ],
+    demos: [
+      {
+        id: "zenbridge-echo",
+        title: "Activity into insight",
+        caption: "Visitor events flow into ECHO and roll up into the areas marketing should act on.",
+      },
+      {
+        id: "zenbridge-waterfall",
+        title: "A shorter waterfall",
+        caption: "Image, cache, and script tuning pulls the largest paint forward.",
+      },
+      {
+        id: "zenbridge-components",
+        title: "Built from one library",
+        caption: "Pages assemble from shared components instead of one-off markup.",
+      },
+    ],
+    visual: "echo",
   },
   {
     slug: "edi-sla-monitor",
@@ -115,6 +172,23 @@ export const projects = [
       "Delay and adherence charts that analysts and support read every day.",
     ],
     results: ["Shorter time to detection.", "A clearer read on delay and SLA adherence."],
+    demos: [
+      {
+        id: "sla-feed",
+        title: "A live feed",
+        caption: "Transactions stream in over WebSockets, newest first, with SLA status on each.",
+      },
+      {
+        id: "sla-anomaly",
+        title: "Flagged as it happens",
+        caption: "A delay spike is called out the moment it crosses the SLA threshold.",
+      },
+      {
+        id: "sla-adherence",
+        title: "Adherence at a glance",
+        caption: "Each document type against its target, so a slipping lane stands out.",
+      },
+    ],
     visual: "signal",
   },
 ] as const;

@@ -5,20 +5,18 @@ export function Skills() {
   return (
     <section className="section" id="skills" aria-labelledby="skills-title" style={{ paddingTop: 0 }}>
       <div className="shell">
-        <Reveal>
-          <div className="section-head">
-            <p className="kicker">
-              <span>03</span>
-              Skills
-            </p>
-            <h2 id="skills-title" className="section-title">
-              The tools the work actually runs on.
-            </h2>
-          </div>
-        </Reveal>
+        <div className="section-head">
+          <p className="kicker" data-anim="">
+            <span>03</span>
+            Skills
+          </p>
+          <h2 id="skills-title" className="section-title" data-split="">
+            The tools the work actually runs on.
+          </h2>
+        </div>
         <div className="skill-grid">
-          {skillGroups.map((group, index) => (
-            <Reveal key={group.label} className="skill-group" delay={(index % 4) * 50}>
+          {skillGroups.map((group) => (
+            <Reveal key={group.label} className="skill-group">
               <h3>{group.label}</h3>
               <ul>
                 {group.items.map((item) => (
