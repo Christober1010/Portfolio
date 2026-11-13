@@ -6,9 +6,9 @@ export function Experience() {
     <section className="section" id="experience" aria-labelledby="experience-title">
       <div className="shell experience-layout">
         <Reveal className="experience-aside">
-          <div className="role-card">
+          <div className="glass role-card">
             <p className="kicker">
-              <span>02</span>
+              <span>03</span>
               Experience
             </p>
             <p className="company">{profile.companyShort}</p>
@@ -24,12 +24,12 @@ export function Experience() {
 
         <div>
           <h2 id="experience-title" className="section-title" data-split="">
-            End-to-end ownership on a workflow platform.
+            End-to-end ownership on a <em>workflow</em> platform.
           </h2>
-          <p className="lede" style={{ marginTop: "1rem" }} data-anim="">
+          <p className="lede" style={{ marginTop: "1.25rem" }} data-anim="">
             {profile.company}. Architecture, the canvas, the AI surface, and the release path.
           </p>
-          <div className="beats" style={{ marginTop: "1.75rem" }}>
+          <div className="beats">
             {experience.map((item) => (
               <div key={item.lead} className="beat" data-anim="" data-rule="">
                 <strong>{item.lead}</strong>

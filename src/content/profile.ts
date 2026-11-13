@@ -31,6 +31,11 @@ export const projects = [
       "A production drag-and-drop builder for designing and running complex EDI processes. The canvas holds unbounded graphs past 100 nodes, with live state sync and type-aware validation before anything executes.",
     outcome:
       "Prompt-driven mapping takes configuration from hours to minutes, and the tool is used daily by operations teams.",
+    metrics: [
+      { value: "~40%", label: "Fewer config failures" },
+      { value: "~35%", label: "Smaller initial bundle" },
+      { value: "100+", label: "Nodes on one canvas" },
+    ],
     stack: ["React", "TypeScript", "Redux Toolkit", "WebSockets", "OpenAI"],
     role: "Frontend engineer · architecture to release",
     context:
@@ -63,7 +68,7 @@ export const projects = [
       {
         id: "workflow-prompt",
         title: "Plain language to mapping",
-        caption: "Describe the mapping; the assistant streams the configuration back token by token.",
+        caption: "Describe the mapping in plain words, and the assistant draws each connection onto the canvas.",
       },
     ],
     visual: "workflow",
@@ -78,6 +83,7 @@ export const projects = [
       "A reference platform scaled to 1.8 million indexed pages. Server-side generation, metadata, and internal linking were built so the catalog stays crawlable and fast at that size.",
     outcome:
       "Measurable organic growth from routing, caching, and a content model designed for scale.",
+    metrics: [{ value: "1.8M+", label: "Indexed pages" }],
     stack: ["Next.js", "React", "Node.js", "PostgreSQL"],
     role: "Frontend engineer",
     context:
@@ -117,7 +123,11 @@ export const projects = [
     summary:
       "Sole frontend owner from design handoff to production. A statically generated Next.js marketing site on a shared component library, integrated with ECHO, the in-house event tool, so marketing can see what visitors engage with.",
     outcome:
-      "98/100 Lighthouse performance and 95/100 SEO, and a marketing team that can see which parts of the site hold visitors' interest.",
+      "A marketing team that can see which parts of the site hold visitors' interest.",
+    metrics: [
+      { value: "98", label: "Lighthouse performance" },
+      { value: "95", label: "Lighthouse SEO" },
+    ],
     stack: ["Next.js", "React", "SASS", "SEO", "ECHO"],
     role: "Sole frontend owner",
     context:
@@ -162,6 +172,7 @@ export const projects = [
     summary:
       "A live dashboard for SLA compliance on EDI transactions. Abnormality detection flags workflow failures as they happen, and the charts are what analysts and support use each day.",
     outcome: "Shorter time to detection, and a clearer read on delay and adherence.",
+    metrics: [],
     stack: ["React", "WebSockets", "Real-time data"],
     role: "Frontend engineer",
     context:
@@ -271,6 +282,34 @@ export const skillGroups = [
     label: "Tools",
     items: ["Git", "GitLab CI/CD", "Figma", "Postman"],
   },
+] as const;
+
+export const approach = [
+  {
+    title: "Own it end to end",
+    text: "From the component to the API contract and the release pipeline. A feature is not done when the UI renders; it is done when it ships and holds up in production.",
+  },
+  {
+    title: "Fast at scale, not just on the demo",
+    text: "Canvases past a hundred nodes, catalogs of 1.8 million pages. The interesting problems start where the data stops fitting on one screen.",
+  },
+  {
+    title: "Real-time by default",
+    text: "WebSockets, streamed tokens, live state sync. If a person is waiting on something, they should be able to watch it happen.",
+  },
+] as const;
+
+export const marquee = [
+  "React",
+  "Next.js",
+  "TypeScript",
+  "AI workflow tools",
+  "Real-time chat",
+  "1.8M+ pages",
+  "WebSockets",
+  "Design systems",
+  "Core Web Vitals",
+  "Playwright",
 ] as const;
 
 export const nav = [

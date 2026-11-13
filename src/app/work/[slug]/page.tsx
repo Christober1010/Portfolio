@@ -42,10 +42,10 @@ export default async function ProjectPage(props: PageProps<"/work/[slug]">) {
   return (
     <main id="content">
       <div className="read-progress" data-progress="" aria-hidden="true" />
-      <article className="section case" aria-labelledby="case-title" style={{ paddingTop: "3rem" }}>
+      <article className="section case" aria-labelledby="case-title">
         <div className="shell">
           <Link className="back-link" href="/#work" data-intro="fade">
-            ← All work
+            <span aria-hidden="true">←</span> All work
           </Link>
           <p className="kicker" style={{ marginTop: "2.5rem" }} data-intro="fade">
             <span>{project.index}</span>
@@ -58,7 +58,7 @@ export default async function ProjectPage(props: PageProps<"/work/[slug]">) {
             {project.subtitle}
           </p>
 
-          <dl className="case-meta" data-intro="fade">
+          <dl className="glass case-meta" data-intro="fade">
             <div>
               <dt>Year</dt>
               <dd>{project.year}</dd>
@@ -79,10 +79,12 @@ export default async function ProjectPage(props: PageProps<"/work/[slug]">) {
             </div>
           </dl>
 
-          <div className="case-visual">
-            <ViewTransition name={`visual-${project.slug}`} share="morph" default="none">
-              <Visual />
-            </ViewTransition>
+          <div className="case-visual" data-intro="fade">
+            <div className="project-visual">
+              <ViewTransition name={`visual-${project.slug}`} share="morph" default="none">
+                <Visual />
+              </ViewTransition>
+            </div>
           </div>
 
           <div className="case-body">
@@ -153,12 +155,17 @@ export default async function ProjectPage(props: PageProps<"/work/[slug]">) {
           </div>
 
           <Reveal>
-            <Link className="card card-link next-case" href={`/work/${next.slug}/`}>
+            <Link className="glass card next-case" href={`/work/${next.slug}/`} data-cursor="view">
               <p className="kicker" style={{ margin: 0 }}>
                 <span>{next.index}</span>
                 Next project
               </p>
-              <h3>{next.title} →</h3>
+              <h3>
+                {next.title}
+                <span className="btn-arrow" aria-hidden="true">
+                  →
+                </span>
+              </h3>
               <p className="sub">{next.subtitle}</p>
             </Link>
           </Reveal>

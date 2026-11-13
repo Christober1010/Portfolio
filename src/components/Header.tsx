@@ -5,6 +5,23 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { nav, profile } from "@/content/profile";
 
+function useLocalTime() {
+  const [time, setTime] = useState("");
+  useEffect(() => {
+    const format = new Intl.DateTimeFormat("en-GB", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+      timeZone: "Asia/Kolkata",
+    });
+    const update = () => setTime(format.format(new Date()));
+    update();
+    const id = window.setInterval(update, 15000);
+    return () => window.clearInterval(id);
+  }, []);
+  return time;
+}
+
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
@@ -12,6 +29,7 @@ export function Header() {
   const onHome = pathname === "/";
   const [section, setSection] = useState("");
   const active = onHome ? section : pathname.startsWith("/work") ? "work" : "";
+  const time = useLocalTime();
 
   useEffect(() => {
     let last = window.scrollY;
@@ -54,7 +72,7 @@ export function Header() {
       <a className="skip" href="#content">
         Skip to content
       </a>
-      <div className="shell nav-bar">
+      <div className="nav-pill">
         <Link className="mark" href="/#top" aria-label={onHome ? "Back to top" : "Home"}>
           CE
         </Link>
@@ -69,9 +87,14 @@ export function Header() {
             </Link>
           ))}
         </nav>
-        <a className="btn btn-primary nav-mail" href={`mailto:${profile.email}`} data-magnetic="">
-          Email
-        </a>
+        <div className="nav-side">
+          <p className="nav-time" aria-label="Local time in Chennai">
+            Chennai <b>{time || "--:--"}</b>
+          </p>
+          <a className="btn btn-primary btn-sm nav-mail" href={`mailto:${profile.email}`} data-magnetic="">
+            Email
+          </a>
+        </div>
       </div>
     </header>
   );

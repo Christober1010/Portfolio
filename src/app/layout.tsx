@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Newsreader } from "next/font/google";
+import { Atmosphere } from "@/components/Atmosphere";
+import { Cursor } from "@/components/Cursor";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Motion } from "@/components/motion/Motion";
@@ -90,7 +92,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
+        <Atmosphere />
         <Spotlight />
+        <Cursor />
         <SmoothScroll />
         <Motion />
         <div className="page">

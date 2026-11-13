@@ -97,22 +97,21 @@ export function Contact() {
     <section className="section" id="contact" aria-labelledby="contact-title">
       <div className="shell contact-layout">
         <div>
-          <p className="kicker">
-            <span>04</span>
+          <p className="kicker" data-anim="">
+            <span>05</span>
             Contact
           </p>
           <h2 id="contact-title" className="section-title" data-split="">
             Tell me what you’re building.
           </h2>
-          <p className="lede" style={{ marginTop: "1rem" }}>
+          <p className="lede" style={{ marginTop: "1.25rem" }} data-anim="">
             Roles, collaborations, or a closer look at the work. The note comes straight to my
             inbox. Email and phone are here if you would rather skip the form.
           </p>
-          <ul className="contact-list">
-            <li>
-              <span>Email</span>
-              <a href={`mailto:${profile.email}`}>{profile.email}</a>
-            </li>
+          <a className="contact-big" href={`mailto:${profile.email}`} data-anim="">
+            {profile.email}
+          </a>
+          <ul className="contact-list" data-anim="">
             <li>
               <span>Phone</span>
               <a href={`tel:${profile.phone}`}>{profile.phoneDisplay}</a>
@@ -130,6 +129,7 @@ export function Contact() {
           </ul>
         </div>
 
+        <div className="glass form-panel" data-anim="">
         {status === "sent" ? (
           <div className="notice" role="status">
             <h3>Note sent.</h3>
@@ -228,10 +228,14 @@ export function Contact() {
                 data-magnetic=""
               >
                 {status === "sending" ? "Sending" : "Send note"}
+                <span className="btn-arrow" aria-hidden="true">
+                  ↗
+                </span>
               </button>
             </div>
           </form>
         )}
+        </div>
       </div>
     </section>
   );
